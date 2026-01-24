@@ -1,0 +1,15 @@
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\bin\Debug\net8.0\RestaurantCore.exe
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\bin\Debug\net8.0\RestaurantCore.deps.json
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\bin\Debug\net8.0\RestaurantCore.runtimeconfig.json
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\bin\Debug\net8.0\RestaurantCore.dll
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\bin\Debug\net8.0\RestaurantCore.pdb
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.AssemblyInfo.cs
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.sourcelink.json
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.dll
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\refint\RestaurantCore.dll
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.pdb
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\RestaurantCore.genruntimeconfig.cache
+C:\Users\user\Desktop\RestaurantApp\RestaurantCore\obj\Debug\net8.0\ref\RestaurantCore.dll
