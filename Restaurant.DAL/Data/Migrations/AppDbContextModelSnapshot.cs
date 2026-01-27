@@ -87,16 +87,11 @@ namespace Restaurant.DAL.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId1")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MenuItemId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderItems");
                 });
@@ -115,10 +110,6 @@ namespace Restaurant.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Core.Models.Order", null)
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId1");
-
                     b.Navigation("MenuItem");
 
                     b.Navigation("Order");
@@ -131,8 +122,6 @@ namespace Restaurant.DAL.Migrations
 
             modelBuilder.Entity("Restaurant.Core.Models.Order", b =>
                 {
-                    b.Navigation("Items");
-
                     b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618

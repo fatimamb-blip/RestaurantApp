@@ -17,6 +17,10 @@ namespace Restaurant.DAL.Configurations
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Catagory).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Price).HasColumnType("decimal(10,2)");
+            builder.HasMany(x => x.OrderItems)
+               .WithOne(x => x.MenuItem)
+               .HasForeignKey(x => x.MenuItemId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

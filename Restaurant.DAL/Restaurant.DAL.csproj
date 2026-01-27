@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Restaurant.Core\Restaurant.Core.csproj" />
-  </ItemGroup>
-
 </Project>

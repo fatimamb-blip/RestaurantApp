@@ -9,8 +9,6 @@ namespace Restaurant.Core.Models
 {
     public class Order : BaseEntity
     {
-      
-        public List<OrderItem> Items { get; set; }
         public decimal TotalAmount { get; set; }
         public DateTime Date { get; set; }
        

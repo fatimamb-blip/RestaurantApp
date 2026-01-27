@@ -1,6 +1,4 @@
-C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\bin\Debug\net8.0\Restaurant.BLL.exe
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\bin\Debug\net8.0\Restaurant.BLL.deps.json
-C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\bin\Debug\net8.0\Restaurant.BLL.runtimeconfig.json
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\bin\Debug\net8.0\Restaurant.BLL.dll
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\bin\Debug\net8.0\Restaurant.BLL.pdb
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\Restaurant.BLL.GeneratedMSBuildEditorConfig.editorconfig
@@ -11,5 +9,4 @@ C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\Restaurant.B
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\Restaurant.BLL.dll
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\refint\Restaurant.BLL.dll
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\Restaurant.BLL.pdb
-C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\Restaurant.BLL.genruntimeconfig.cache
 C:\Users\user\Desktop\RestaurantApp\Restaurant.BLL\obj\Debug\net8.0\ref\Restaurant.BLL.dll
