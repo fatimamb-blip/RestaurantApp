@@ -1,23 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Restaurant.Core.Models;
+using Restaurant.DAL.Models;
 
-namespace Restaurant.DAL.Configurations;
-
-public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
+namespace Restaurant.DAL.Configurations
 {
-    public void Configure(EntityTypeBuilder<OrderItem> builder)
+    public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
     {
-        builder.HasKey(x => x.Id);
+        public void Configure(EntityTypeBuilder<OrderItem> builder)
+        {
+            builder.HasKey(x => x.Id);
 
-       
-        builder.HasOne(x => x.Order)
-               .WithMany(x => x.OrderItems)
-               .HasForeignKey(x => x.OrderId);
+            builder.Property(x => x.Count).IsRequired();
 
-   
-        builder.HasOne(x => x.MenuItem)
-               .WithMany(x => x.OrderItems)
-               .HasForeignKey(x => x.MenuItemId);
+        }
     }
 }
+

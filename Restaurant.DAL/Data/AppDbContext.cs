@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Restaurant.Core.Models;
+using Restaurant.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

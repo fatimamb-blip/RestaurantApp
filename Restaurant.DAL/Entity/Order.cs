@@ -1,4 +1,5 @@
 ﻿using Restaurant.Core.Entity;
+using Restaurant.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Restaurant.Core.Models
 {
     public class Order : BaseEntity
     {
-        public decimal TotalAmount { get; set; }
         public DateTime Date { get; set; }
-       
+
+        public decimal TotalAmount { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
