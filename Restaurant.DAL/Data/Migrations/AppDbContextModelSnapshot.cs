@@ -22,7 +22,7 @@ namespace Restaurant.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Restaurant.Core.Models.MenuItem", b =>
+            modelBuilder.Entity("Restaurant.Core.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,26 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Catagory")
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Restaurant.DAL.Models.MenuItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -51,26 +70,7 @@ namespace Restaurant.DAL.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Models.OrderItem", b =>
+            modelBuilder.Entity("Restaurant.DAL.Models.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,18 +89,19 @@ namespace Restaurant.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuItemId");
+                    b.HasIndex("MenuItemId")
+                        .IsUnique();
 
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.OrderItem", b =>
+            modelBuilder.Entity("Restaurant.DAL.Models.OrderItem", b =>
                 {
-                    b.HasOne("Restaurant.Core.Models.MenuItem", "MenuItem")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("MenuItemId")
+                    b.HasOne("Restaurant.DAL.Models.MenuItem", "MenuItem")
+                        .WithOne("OrderItem")
+                        .HasForeignKey("Restaurant.DAL.Models.OrderItem", "MenuItemId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -115,14 +116,15 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.MenuItem", b =>
+            modelBuilder.Entity("Restaurant.Core.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Restaurant.Core.Models.Order", b =>
+            modelBuilder.Entity("Restaurant.DAL.Models.MenuItem", b =>
                 {
-                    b.Navigation("OrderItems");
+                    b.Navigation("OrderItem")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

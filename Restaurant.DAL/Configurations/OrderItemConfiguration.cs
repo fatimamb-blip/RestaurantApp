@@ -12,6 +12,10 @@ namespace Restaurant.DAL.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Count).IsRequired();
+            builder.HasOne(oi => oi.Order)
+                   .WithMany(oi => oi.OrderItems)
+                   .HasForeignKey(i => i.OrderId)
+                   .OnDelete(DeleteBehavior.Cascade);
 
         }
     }
