@@ -7,9 +7,9 @@ using Restaurant.DAL.Models;
 
 namespace Restaurant.BLL.Profiles
 {
-    public class AutoMapperProfiles : Profile
+    public class Mapper : Profile
     {
-        public AutoMapperProfiles()
+        public Mapper()
         {
             CreateMap<MenuItemCreateDto, MenuItem>();
             CreateMap<MenuItem, MenuItemReturnDto>();
