@@ -50,8 +50,9 @@ namespace Restaurant.BLL.Services
 
         public async Task RemoveMenuItemAsync(int id)
         {
-            var item = await context.MenuItems.FindAsync(id)
-                       ?? throw new NotFoundException($"MenuItem {id} not found.");
+            var item = await context.MenuItems.FindAsync(id);
+            if (item == null)
+                throw new NotFoundException($"MenuItem {id} not found.");
             context.MenuItems.Remove(item);
             await context.SaveChangesAsync();
         }
