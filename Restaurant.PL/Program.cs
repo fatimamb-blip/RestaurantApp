@@ -8,21 +8,34 @@ using Restaurant.BLL.Interfaces;
 using Restaurant.BLL.Services;
 using Restaurant.DAL.Data;
 
+// Create service collection and configure services
 var servicesCollection = new ServiceCollection();
 servicesCollection.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=RestaurantDb;Trusted_Connection=True;TrustServerCertificate=True"));
 servicesCollection.AddLogging();
 servicesCollection.AddAutoMapper(options =>
 {
-    options.AddProfile<Mapper>();
+    options.AddProfile<Restaurant.BLL.Profiles.Mapper>();
 });
 servicesCollection.AddScoped<MenuItemService>();
 servicesCollection.AddScoped<OrderService>();
 
+// Build service provider
+var serviceProvider = servicesCollection.BuildServiceProvider();
 
+// Seed database
+using (var scope = serviceProvider.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
+    AddContext.Seed(context);
+}
 
+// Get services for use in the console app
+var menuService = serviceProvider.GetRequiredService<MenuItemService>();
+var orderService = serviceProvider.GetRequiredService<OrderService>();
 
-
+// Main menu loop
 bool exit = false;
 while (!exit)
 {
@@ -49,7 +62,6 @@ while (!exit)
             break;
     }
 }
-
 
 async Task MenuOperations(MenuItemService menuService)
 {
@@ -108,14 +120,14 @@ async Task MenuOperations(MenuItemService menuService)
             case "4":
                 var allItems = await menuService.GetAllMenuItemsAsync();
                 foreach (var item in allItems)
-                    Console.WriteLine($"{item.Name} | {item.Category} | {item.Price}");
+                    Console.WriteLine($"Id: {item.Id} | {item.Name} | {item.Category} | ${item.Price}");
                 break;
 
             case "5":
                 Console.Write("Enter Category: "); string cat = Console.ReadLine();
                 var catItems = await menuService.GetAllMenuItemsByCategoryAsync(cat);
                 foreach (var item in catItems)
-                    Console.WriteLine($"{item.Name} | {item.Category} | {item.Price}");
+                    Console.WriteLine($"Id: {item.Id} | {item.Name} | {item.Category} | ${item.Price}");
                 break;
 
             case "6":
@@ -123,14 +135,14 @@ async Task MenuOperations(MenuItemService menuService)
                 Console.Write("Max Price: "); decimal max = decimal.Parse(Console.ReadLine());
                 var rangeItems = await menuService.GetByPriceRangeAsync(min, max);
                 foreach (var item in rangeItems)
-                    Console.WriteLine($"{item.Name} | {item.Category} | {item.Price}");
+                    Console.WriteLine($"Id: {item.Id} | {item.Name} | {item.Category} | ${item.Price}");
                 break;
 
             case "7":
                 Console.Write("Search Name: "); string search = Console.ReadLine();
-                var searchItems = await menuService.SearchMenuItemAsync(search);
+                var searchItems = await menuService.SearchMenuItemsAsync(search);
                 foreach (var item in searchItems)
-                    Console.WriteLine($"{item.Name} | {item.Category} | {item.Price}");
+                    Console.WriteLine($"Id: {item.Id} | {item.Name} | {item.Category} | ${item.Price}");
                 break;
 
             case "0":
@@ -142,7 +154,6 @@ async Task MenuOperations(MenuItemService menuService)
         }
     }
 }
-
 
 async Task OrderOperations(OrderService orderService, MenuItemService menuService)
 {
@@ -166,14 +177,14 @@ async Task OrderOperations(OrderService orderService, MenuItemService menuServic
             case "1":
                 var menuItems = await menuService.GetAllMenuItemsAsync();
                 var orderItems = new List<OrderItemCreateDto>();
-                Console.WriteLine("Available Menu Items:");
+                Console.WriteLine("\nAvailable Menu Items:");
                 foreach (var item in menuItems)
-                    Console.WriteLine($"{item.Name} | {item.Category} | {item.Price}");
+                    Console.WriteLine($"Id: {item.Id} | {item.Name} | {item.Category} | ${item.Price}");
 
                 bool adding = true;
                 while (adding)
                 {
-                    Console.Write("MenuItem Id: "); int id = int.Parse(Console.ReadLine());
+                    Console.Write("\nMenuItem Id: "); int id = int.Parse(Console.ReadLine());
                     Console.Write("Count: "); int count = int.Parse(Console.ReadLine());
                     orderItems.Add(new OrderItemCreateDto { MenuItemId = id, Count = count });
 
@@ -195,7 +206,7 @@ async Task OrderOperations(OrderService orderService, MenuItemService menuServic
                 var allOrders = await orderService.GetAllOrdersAsync();
                 foreach (var order in allOrders)
                 {
-                    Console.WriteLine($"Order Total: {order.TotalAmount}, Date: {order.Date}, Items Count: {order.Items.Count}");
+                    Console.WriteLine($"Order Id: {order.Id} | Total: ${order.TotalAmount} | Date: {order.Date} | Items: {order.Items.Count}");
                 }
                 break;
 
@@ -204,7 +215,7 @@ async Task OrderOperations(OrderService orderService, MenuItemService menuServic
                 Console.Write("To Date (yyyy-MM-dd): "); DateTime to = DateTime.Parse(Console.ReadLine());
                 var ordersByInterval = await orderService.GetOrdersByDateIntervalAsync(from, to);
                 foreach (var order in ordersByInterval)
-                    Console.WriteLine($"Order Total: {order.TotalAmount}, Date: {order.Date}, Items Count: {order.Items.Count}");
+                    Console.WriteLine($"Order Id: {order.Id} | Total: ${order.TotalAmount} | Date: {order.Date} | Items: {order.Items.Count}");
                 break;
 
             case "5":
@@ -212,22 +223,23 @@ async Task OrderOperations(OrderService orderService, MenuItemService menuServic
                 Console.Write("Max Amount: "); decimal max = decimal.Parse(Console.ReadLine());
                 var ordersByPrice = await orderService.GetOrdersByPriceRangeAsync(min, max);
                 foreach (var order in ordersByPrice)
-                    Console.WriteLine($"Order Total: {order.TotalAmount}, Date: {order.Date}, Items Count: {order.Items.Count}");
+                    Console.WriteLine($"Order Id: {order.Id} | Total: ${order.TotalAmount} | Date: {order.Date} | Items: {order.Items.Count}");
                 break;
 
             case "6":
                 Console.Write("Enter Date (yyyy-MM-dd): "); DateTime date = DateTime.Parse(Console.ReadLine());
                 var ordersByDate = await orderService.GetOrdersByDateAsync(date);
                 foreach (var order in ordersByDate)
-                    Console.WriteLine($"Order Total: {order.TotalAmount}, Date: {order.Date}, Items Count: {order.Items.Count}");
+                    Console.WriteLine($"Order Id: {order.Id} | Total: ${order.TotalAmount} | Date: {order.Date} | Items: {order.Items.Count}");
                 break;
 
             case "7":
                 Console.Write("Enter Order Id: "); int orderId = int.Parse(Console.ReadLine());
                 var ord = await orderService.GetOrderByIdAsync(orderId);
-                Console.WriteLine($"Order Total: {ord.TotalAmount}, Date: {ord.Date}");
+                Console.WriteLine($"\nOrder Id: {ord.Id} | Total: ${ord.TotalAmount} | Date: {ord.Date}");
+                Console.WriteLine("Items:");
                 foreach (var i in ord.Items)
-                    Console.WriteLine($"ItemId: {i.MenuItemId}, Count: {i.Count}, Name: {i.MenuItemName}");
+                    Console.WriteLine($"  - {i.MenuItemName} x{i.Count}");
                 break;
 
             case "0":

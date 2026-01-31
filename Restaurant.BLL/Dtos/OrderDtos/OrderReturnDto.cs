@@ -13,6 +13,7 @@ namespace Restaurant.BLL.Dtos.OrderDtos
         public decimal TotalAmount { get; set; }
         public List<OrderItemReturnDto> Items { get; set; } = new();
         public object OrderItems { get; internal set; }
+        public object Id { get; set; }
     }
 }
 

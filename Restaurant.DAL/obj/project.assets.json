@@ -4023,11 +4023,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\RestaurantApp\\Restaurant.DAL\\Restaurant.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\RestaurantApp\\Restaurant.DAL\\Restaurant.DAL.csproj",
       "projectName": "Restaurant.DAL",
-      "projectPath": "C:\\Users\\user\\Desktop\\RestaurantApp\\Restaurant.DAL\\Restaurant.DAL.csproj",
+      "projectPath": "C:\\Users\\user\\Source\\Repos\\RestaurantApp\\Restaurant.DAL\\Restaurant.DAL.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\RestaurantApp\\Restaurant.DAL\\obj\\",
+      "outputPath": "C:\\Users\\user\\Source\\Repos\\RestaurantApp\\Restaurant.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

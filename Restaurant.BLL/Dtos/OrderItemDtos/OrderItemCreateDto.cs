@@ -12,6 +12,6 @@ namespace Restaurant.BLL.Dtos.OrderItemDtos
         public string MenuItemName { get; set; } = null!;
         public decimal Price { get; set; }
         public int Count { get; set; }
-        public object?[]? MenuItemId { get; internal set; }
+        public int MenuItemId { get;  set; }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b44aj7sJjEA=",
+  "dgSpecHash": "GYKl09uoUz0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\RestaurantApp\\Restaurant.BLL\\Restaurant.BLL.csproj",
+  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\RestaurantApp\\Restaurant.BLL\\Restaurant.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

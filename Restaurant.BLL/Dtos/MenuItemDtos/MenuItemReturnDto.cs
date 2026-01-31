@@ -11,5 +11,6 @@ namespace Restaurant.BLL.Dtos.MenuItemDtos
         public string Name { get; set; } = null!;
         public decimal Price { get; set; }
         public string Category { get; set; } = null!;
+        public object Id { get; set; }
     }
 }
