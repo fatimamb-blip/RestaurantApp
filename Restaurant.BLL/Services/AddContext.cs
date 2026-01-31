@@ -14,15 +14,15 @@ namespace Restaurant.BLL.Services
         {
             public static void Seed(AppDbContext context)
             {
-                // Check if data already exists
+                
                 if (context.MenuItems.Any())
                 {
                     Console.WriteLine("Database already seeded.");
                     return;
                 }
 
-                // Add Menu Items
-                var menuItems = new List<MenuItem>
+
+            var menuItems = new List<MenuItem>
             {
                 new MenuItem { Name = "Margherita Pizza", Price = 12.99m, Category = "Pizza" },
                 new MenuItem { Name = "Pepperoni Pizza", Price = 14.99m, Category = "Pizza" },
@@ -37,11 +37,11 @@ namespace Restaurant.BLL.Services
                 new MenuItem { Name = "Coca Cola", Price = 2.99m, Category = "Beverage" },
                 new MenuItem { Name = "Orange Juice", Price = 3.99m, Category = "Beverage" }
             };
+            
 
                 context.MenuItems.AddRange(menuItems);
                 context.SaveChanges();
 
-                // Add Sample Orders
                 var order1 = new Order
                 {
                     Date = DateTime.Now.AddDays(-2),
