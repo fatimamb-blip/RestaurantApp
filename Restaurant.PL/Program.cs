@@ -8,7 +8,7 @@ using Restaurant.BLL.Interfaces;
 using Restaurant.BLL.Services;
 using Restaurant.DAL.Data;
 
-// Create service collection and configure services
+
 var servicesCollection = new ServiceCollection();
 servicesCollection.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=RestaurantDb;Trusted_Connection=True;TrustServerCertificate=True"));
@@ -17,25 +17,25 @@ servicesCollection.AddAutoMapper(options =>
 {
     options.AddProfile<Restaurant.BLL.Profiles.Mapper>();
 });
+
 servicesCollection.AddScoped<MenuItemService>();
 servicesCollection.AddScoped<OrderService>();
 
-// Build service provider
+
 var serviceProvider = servicesCollection.BuildServiceProvider();
 
-// Seed database
+
 using (var scope = serviceProvider.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
     AddContext.Seed(context);
 }
 
-// Get services for use in the console app
 var menuService = serviceProvider.GetRequiredService<MenuItemService>();
 var orderService = serviceProvider.GetRequiredService<OrderService>();
 
-// Main menu loop
+
 bool exit = false;
 while (!exit)
 {
